@@ -1,0 +1,13 @@
+<div class="row  justify-content-end ">
+    <div class="col-md-2 mb-2">
+        <button  (click)="LogOut()" type="button" class="btn btn-outline-dark">Log Out</button>
+    </div>
+</div>
+
+
+<ng-container *ngIf="userDetails">
+
+    <app-profile [data]="userDetails">
+
+    </app-profile>
+</ng-container>

@@ -1,0 +1,58 @@
+
+<div class="container">
+    <div class="row  justify-content-end ">
+        <div class="col-md-2 mb-2">
+            <button (click)="LogOut()" type="button" class="btn btn-outline-dark">Log Out</button>
+        </div>
+    </div>
+    <div class="row">
+        <button *ngIf="showUserDetails" (click)="showUserDetails =false" type="button"
+            class="btn btn-outline-dark">Back</button>
+
+        <ng-container *ngIf="!showUserDetails">
+            <div class="table-wrap" >
+
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">S. No.</th>
+                        <th scope="col">Picture</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email Id</th>
+                        <th scope="col">Phone No</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody style="height: 40vh;">
+
+                    <tr *ngFor="let user of userList; let i = index;">
+                        <th >{{i}}</th>
+                        <td>
+                            <div class="profile-userpic">
+                                <img [src]="user.picture.thumbnail" class="img-responsive" alt="">
+                            </div>
+                        </td>
+                        <td> {{user.name.title}} {{user.name.first}} {{user.name.last}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            {{user.phone}}
+                        </td>
+                        <td>
+                            <span class="badge badge-primary" (click)="gotoProfilePage(user)">View Details</span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        </ng-container>
+
+
+    </div>
+</div>
+<ng-container *ngIf="showUserDetails">
+
+    <app-profile [data]="userDetails">
+
+    </app-profile>
+</ng-container>
